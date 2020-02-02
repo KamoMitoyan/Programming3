@@ -9,7 +9,6 @@ var Hunter = require("./modules/hunter.js");
 let random = require('./modules/random');
 //! Requiring modules  --  END
 
-
 //! Setting global arrays  --  START
 grassArr = [];
 grassEaterArr = [];
@@ -20,6 +19,10 @@ hunterArr = [];
 matrix = [];
 grassHashiv = 0;
 grassEaterHashiv = 0;
+predatorHashiv = 0;
+reaperHashiv = 0;
+creatorHashiv = 0;
+hunterHashiv = 0;
 //! Setting global arrays  -- END
 
 
@@ -64,7 +67,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, reaper, creato
         matrix[customY][customX] = 6;
     }
 }
-matrixGenerator(20, 1, 1, 1, 1, 1, 1);
+matrixGenerator(50, 3, 8, 3, 3, 2, 5);
 //! Creating MATRIX -- END
 
 
@@ -99,18 +102,22 @@ function creatingObjects() {
             else if(matrix[y][x] == 3){
                 var predator = new Predator(x,y);
                 predatorArr.push(predator);
+                predatorHashiv++;
             }
             else if(matrix[y][x] == 4){
                 var reaper = new Reaper(x,y);
                 reaperArr.push(reaper);
+                reaperHashiv++;
             }
             else if(matrix[y][x] == 5){
                 var creator = new Creator(x,y);
                 creatorArr.push(creator);
+                creatorHashiv++;
             }
             else if(matrix[y][x] == 6){
                 var hunter = new Hunter(x,y);
                 hunterArr.push(hunter);
+                hunterHashiv++;
             }
         }
     }
@@ -135,12 +142,12 @@ function game() {
     }
     if(reaperArr[0] !== undefined){
         for(var i in reaperArr){
-            reaperArr[i].destroy()
+            reaperArr[i].move()
         }
     }
     if(creatorArr[0] !== undefined){
         for(var i in creatorArr){
-            creatorArr[i].create();
+            creatorArr[i].move();
         }
     }
     if(hunterArr[0] !== undefined){
@@ -153,7 +160,11 @@ function game() {
     let sendData = {
         matrix: matrix,
         grassCounter: grassHashiv,
-        grassEaterCounter: grassEaterHashiv
+        grassEaterCounter: grassEaterHashiv,
+        predatorCounter: predatorHashiv,
+        reaperCounter: reaperHashiv,
+        creatorCounter: creatorHashiv,
+        hunterCounter: hunterHashiv
     }
 
     //! Send data over the socket to clients who listens "data"
