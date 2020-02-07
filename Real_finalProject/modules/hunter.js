@@ -30,13 +30,13 @@ module.exports = class Hunter extends LiveForm {
 		let newCell = random(this.chooseCell(0));
 
 		if(newCell){
-			this.energy--;
+			this.energy -= 0.5;
 			matrix[this.y][this.x] = 0;
 			this.x = newCell[0];
 			this.y = newCell[1];
 			matrix[newCell[1]][newCell[0]] = 6;
 		}
-		if(this.energy <= 0 || this.killedAnimals >= 25){
+		if(this.energy <= 0 || this.killedAnimals >= 40){
 			this.die();
 		}
 	}
@@ -55,7 +55,6 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in grassEaterArr) {
                 if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
                     grassEaterArr.splice(i, 1);
-					grassEaterHashiv--;
                 }
 			}	
 		}
@@ -69,7 +68,6 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in predatorArr) {
                 if (predatorArr[i].x == this.x && predatorArr[i].y == this.y) {
                     predatorArr.splice(i, 1);
-					predatorHashiv--;
                 }
 			}	
 		}
@@ -81,7 +79,6 @@ module.exports = class Hunter extends LiveForm {
 				for(var i in grassArr){
 					if(grassArr[i].x == this.x && grassArr[i].y == this.y){
 						grassArr.splice(i,1);
-						grassHashiv--;
 					}
 				}
 		}
@@ -95,7 +92,6 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in predatorArr) {
                 if (predatorArr[i].x == this.x && predatorArr[i].y == this.y) {
                     predatorArr.splice(i, 1);
-					predatorHashiv--;
                 }
 			}	
 		}
@@ -109,7 +105,6 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in grassEaterArr) {
                 if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
                     grassEaterArr.splice(i, 1);
-					grassEaterHashiv--;
                 }
 			}	
 		}
@@ -123,7 +118,6 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in predatorArr) {
                 if (predatorArr[i].x == this.x && predatorArr[i].y == this.y) {
                     predatorArr.splice(i, 1);
-					predatorHashiv--;
                 }
 			}	
 		}
@@ -137,14 +131,13 @@ module.exports = class Hunter extends LiveForm {
 			for (var i in predatorArr) {
                 if (predatorArr[i].x == this.x && predatorArr[i].y == this.y) {
                     predatorArr.splice(i, 1);
-					predatorHashiv--;
                 }
 			}	
 		}
 		else{
 			this.move();
 		}
-		if(this.energy >= 15 && this.killedAnimals >= 15){
+		if(this.energy >= 10 && this.killedAnimals >= 10){
 			this.mult();
 		}
 	}
@@ -165,7 +158,6 @@ module.exports = class Hunter extends LiveForm {
 			if(hunterArr[i].x == this.x && hunterArr[i].y == this.y){
 				matrix[this.y][this.x] = 0;
 				hunterArr.splice(i,1);
-				hunterHashiv--;
 			}
 		}
 	}

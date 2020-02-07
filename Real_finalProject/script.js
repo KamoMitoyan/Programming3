@@ -2,7 +2,6 @@
 //! Setup function fires automatically
 function setup() {
 
-	var socketTwo = io();
 
     var socket = io();
 
@@ -19,12 +18,14 @@ function setup() {
     let hunterCountElement = document.getElementById('hunterCount');
 
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
-	socketTwo.on("weather",drawCreatures);
+	
     socket.on("data", drawCreatures);
 
-    function drawCreatures(data,weather) {
+    function drawCreatures(data) {
         //! after getting data pass it to matrix variable
-        matrix = data.matrix;
+		matrix = data.matrix;
+		weather = data.weather;
+		console.log(weather);
         grassCountElement.innerText = data.grassCounter;
         grassEaterCountElement.innerText = data.grassEaterCounter;
         predatorCountElement.innerText = data.predatorCounter;
@@ -32,7 +33,7 @@ function setup() {
         creatorCountElement.innerText = data.creatorCounter;
         hunterCountElement.innerText = data.hunterCounter;
         //! Every time it creates new Canvas woth new matrix size
-        createCanvas(matrix[0].length * side, matrix.length * side)
+        createCanvas(matrix[0].length * side, matrix.length * side);
         //! clearing background by setting it to new grey color
         background('#acacac');
         //! Draw grassCount and grassEaterCount to HTML (use DOM objects to update information, yes, and use .innerText <- function)
@@ -40,31 +41,31 @@ function setup() {
         //! Drawing and coloring RECTs
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
-				if(weather == "summer"){
+				if(weather == "winter"){
 					if (matrix[i][j] == 1) {
-				        fill("light green");
+				        fill("#a9ffa1");
 				        rect(j * side, i * side, side, side);
 				    } else if (matrix[i][j] == 2) {
-				        fill("light yellow");
+				        fill("#fffca1");
 				        rect(j * side, i * side, side, side);
 				    } else if (matrix[i][j] == 0) {
 				        fill('#acacac');
 				        rect(j * side, i * side, side, side);
 				    } else if (matrix[i][j] == 3) {
-				        fill('light red');
+				        fill('#ffa1a1');
 				        rect(j * side, i * side, side, side);
 				    } else if (matrix[i][j] == 4) {
-				        fill('light black');
+				        fill('black');
 				        rect(j * side, i * side, side, side);
 				    } else if (matrix[i][j] == 5) {
 				        fill('white');
 				        rect(j * side, i * side, side, side);
 				    }else if(matrix[i][j] == 6){
-				        fill('light blue');
+				        fill('#a1d9ff');
 					    rect(j * side, i * side, side, side);
 					}
 				}
-				if(weather == "spring" || weather == "autumn"){
+				if(weather == "summer"){
 					if (matrix[i][j] == 1) {
 					    fill("green");
 					    rect(j * side, i * side, side, side);
@@ -88,7 +89,7 @@ function setup() {
 					    rect(j * side, i * side, side, side);
 					}
 				}
-				if(weather == "winter"){
+				if(weather == "spring" || weather == "autumn"){
 					if (matrix[i][j] == 1) {
 					    fill("#1a6b15");
 					    rect(j * side, i * side, side, side);

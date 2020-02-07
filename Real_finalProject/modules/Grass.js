@@ -28,7 +28,35 @@ module.exports = class Grass extends LiveForm {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 
-        if (newCell && this.multiply >= 2) {
+        if (newCell && this.multiply >= 9 && weather == "winter") {
+            grassHashiv++;
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 1;
+            let grass = new Grass(x, y);
+            grassArr.push(grass);
+            this.multiply = 0;
+        }
+        if (newCell && this.multiply >= 2 && weather == "summer") {
+            grassHashiv++;
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 1;
+            let grass = new Grass(x, y);
+            grassArr.push(grass);
+            this.multiply = 0;
+        }
+        
+        if (newCell && this.multiply >= 5 && weather == "spring") {
+            grassHashiv++;
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 1;
+            let grass = new Grass(x, y);
+            grassArr.push(grass);
+            this.multiply = 0;
+        }
+        if (newCell && this.multiply >= 5 && weather == "autumn") {
             grassHashiv++;
             let x = newCell[0];
             let y = newCell[1];

@@ -54,13 +54,21 @@ module.exports = class GrassEater extends LiveForm {
             for (let i in grassArr) {
                 if (grassArr[i].x == x && grassArr[i].y == y) {
                     grassArr.splice(i, 1);
-					grassHashiv--;
                 }
             }
             this.x = x;
             this.y = y;
 
-            if (this.life >= 13) {
+            if (this.life >= 15 && weather == "winter") {
+                this.mul();
+            }
+            else if(this.life >= 10 && weather == "summer"){
+                this.mul();
+            }
+            else if(this.life >= 13 && weather == "spring"){
+                this.mul();
+            }
+            else if(this.life >= 13 && weather == "autumn"){
                 this.mul();
             }
         }

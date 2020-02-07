@@ -6,33 +6,47 @@ module.exports = class God {
 		this.directions = [];
 	}
 	getNewCoordinates(){
-		this.directions = [
-			[this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1],
-			[this.x - 2, this.y - 2],
-			[this.x - 1, this.y - 2],
-			[this.x, this.y - 2],
-			[this.x + 1, this.y - 2],
-			[this.x + 1, this.y - 2],
-			[this.x + 2, this.y - 2],
-			[this.x - 2, this.y - 1],
-			[this.x - 2, this.y],
-			[this.x - 2, this.y + 1],
-			[this.x - 2, this.y + 2],
-			[this.x - 1, this.y + 2],
-			[this.x, this.y + 2],
-			[this.x + 1, this.y + 2],
-			[this.x + 2, this.y + 2],
-			[this.x + 2, this.y - 1],
-			[this.x + 2, this.y],
-			[this.x + 2, this.y + 1]
-		];
+		if(weather == "summer"){
+			this.directions = [
+				[this.x - 1, this.y - 1],
+				[this.x, this.y - 1],
+				[this.x + 1, this.y - 1],
+				[this.x - 1, this.y],
+				[this.x + 1, this.y],
+				[this.x - 1, this.y + 1],
+				[this.x, this.y + 1],
+				[this.x + 1, this.y + 1],
+				[this.x - 2, this.y - 2],
+				[this.x - 1, this.y - 2],
+				[this.x, this.y - 2],
+				[this.x + 1, this.y - 2],
+				[this.x + 1, this.y - 2],
+				[this.x + 2, this.y - 2],
+				[this.x - 2, this.y - 1],
+				[this.x - 2, this.y],
+				[this.x - 2, this.y + 1],
+				[this.x - 2, this.y + 2],
+				[this.x - 1, this.y + 2],
+				[this.x, this.y + 2],
+				[this.x + 1, this.y + 2],
+				[this.x + 2, this.y + 2],
+				[this.x + 2, this.y - 1],
+				[this.x + 2, this.y],
+				[this.x + 2, this.y + 1]
+			];
+		}
+		else if(weather == "spring" || weather == "autumn"){
+			this.directions = [ 
+				[this.x - 1, this.y - 1],
+				[this.x, this.y - 1],
+				[this.x + 1, this.y - 1],
+				[this.x - 1, this.y],
+				[this.x + 1, this.y],
+				[this.x - 1, this.y + 1],
+				[this.x, this.y + 1],
+				[this.x + 1, this.y + 1]
+			];
+		}
 	}
 
 	chooseCell(character){

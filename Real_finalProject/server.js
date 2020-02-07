@@ -134,15 +134,16 @@ function game() {
 		weather = "summer";
 	}
 	else if(count > 10 && count <= 20){
-		weather = "autumn";
+		weather = "spring";
 	}
 	else if(count > 20 && count <= 30){
 		weather = "winter";
 	}
-	else if(count > 30 && count <= 40){
-		weather = "spring";
-		count = 0;
-	}
+	else if(count > 30 && count < 40){
+		weather = "autumn";
+	}else{
+        count = 0;
+    }
 
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
@@ -183,16 +184,12 @@ function game() {
         predatorCounter: predatorHashiv,
         reaperCounter: reaperHashiv,
         creatorCounter: creatorHashiv,
-        hunterCounter: hunterHashiv
+        hunterCounter: hunterHashiv,
+        weather: weather
     }
-
-	let sendWeatherData = {
-		weather: weather
-	}
-
     //! Send data over the socket to clients who listens "data"
     io.sockets.emit("data", sendData);
-	io.sockets.emit("weather",sendWeatherData);
+	
 }
 
 
