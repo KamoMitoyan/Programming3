@@ -23,6 +23,8 @@ predatorHashiv = 0;
 reaperHashiv = 0;
 creatorHashiv = 0;
 hunterHashiv = 0;
+weather = "";
+let count = 0;
 //! Setting global arrays  -- END
 
 
@@ -67,7 +69,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, reaper, creato
         matrix[customY][customX] = 6;
     }
 }
-matrixGenerator(50, 3, 8, 3, 3, 2, 5);
+matrixGenerator(50, 3, 8, 3, 3, 2, 8);
 //! Creating MATRIX -- END
 
 
@@ -94,7 +96,7 @@ function creatingObjects() {
                 grassEaterArr.push(grassEater);
                 grassEaterHashiv++;
             }
-             else if (matrix[y][x] == 1) {
+            else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
                 grassHashiv++;
@@ -125,6 +127,23 @@ function creatingObjects() {
 creatingObjects();
 
 function game() {
+	
+	count++;
+
+	if(count <= 10){
+		weather = "summer";
+	}
+	else if(count > 10 && count <= 20){
+		weather = "autumn";
+	}
+	else if(count > 20 && count <= 30){
+		weather = "winter";
+	}
+	else if(count > 30 && count <= 40){
+		weather = "spring";
+		count = 0;
+	}
+
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
@@ -167,8 +186,13 @@ function game() {
         hunterCounter: hunterHashiv
     }
 
+	let sendWeatherData = {
+		weather: weather
+	}
+
     //! Send data over the socket to clients who listens "data"
     io.sockets.emit("data", sendData);
+	io.sockets.emit("weather",sendWeatherData);
 }
 
 

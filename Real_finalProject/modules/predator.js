@@ -48,6 +48,7 @@ module.exports = class Predator extends LiveForm {
 			for (var i in grassEaterArr) {
                 if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
                     grassEaterArr.splice(i, 1);
+					grassEaterHashiv--;
                 }
 			}	
 		}
@@ -62,6 +63,7 @@ module.exports = class Predator extends LiveForm {
 	mult(){
 			let newCell = random(this.chooseCell(0));
 			if(newCell){
+				predatorHashiv++;
 				let predator = new Predator(newCell[0],newCell[1]);
 				predatorArr.push(predator);
 				matrix[newCell[1]][newCell[0]] = 3;
@@ -74,6 +76,7 @@ module.exports = class Predator extends LiveForm {
 			if(predatorArr[i].x == this.x && predatorArr[i].y == this.y){
 				matrix[this.y][this.x] = 0;
 				predatorArr.splice(i,1);
+				predatorHashiv--;
 			}
 		}
 	}

@@ -30,6 +30,7 @@ module.exports = class Reaper extends God{
                      for(let c in grassArr){
 						if (x == grassArr[c].x && y == grassArr[c].y) {
 							grassArr.splice(c, 1);
+							grassHashiv--;
 						}
  
 					 }
@@ -38,6 +39,7 @@ module.exports = class Reaper extends God{
 					for(let c in grassEaterArr){
 						if (x == grassEaterArr[c].x && y == grassEaterArr[c].y) {
 							grassEaterArr.splice(c, 1);
+							grassEaterHashiv--;
 						}
 					 }
 				}
@@ -45,6 +47,7 @@ module.exports = class Reaper extends God{
 					for(let c in predatorArr){
 						if (x == predatorArr[c].x && y == predatorArr[c].y) {
 							predatorArr.splice(c, 1);
+							predatorHashiv--;
 						}
  
 					 }
@@ -53,6 +56,7 @@ module.exports = class Reaper extends God{
 					for(let c in reaperArr ){
 						if (x == reaperArr[c].x && y == reaperArr[c].y) {
 							reaperArr.splice(c, 1);
+							reaperHashiv--;
 						}
 					 }
 				}
@@ -60,6 +64,7 @@ module.exports = class Reaper extends God{
 					for(let c in hunterArr ){
 						if (x == hunterArr[c].x && y == hunterArr[c].y) {
 							hunterArr.splice(c, 1);
+							hunterHashiv--;
 						}
 					 }
 				}

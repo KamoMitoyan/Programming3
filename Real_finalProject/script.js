@@ -2,6 +2,8 @@
 //! Setup function fires automatically
 function setup() {
 
+	var socketTwo = io();
+
     var socket = io();
 
     var side = 10;
@@ -17,10 +19,10 @@ function setup() {
     let hunterCountElement = document.getElementById('hunterCount');
 
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
-
+	socketTwo.on("weather",drawCreatures);
     socket.on("data", drawCreatures);
 
-    function drawCreatures(data) {
+    function drawCreatures(data,weather) {
         //! after getting data pass it to matrix variable
         matrix = data.matrix;
         grassCountElement.innerText = data.grassCounter;
@@ -38,28 +40,78 @@ function setup() {
         //! Drawing and coloring RECTs
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] == 1) {
-                    fill("green");
-                    rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 2) {
-                    fill("yellow");
-                    rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 0) {
-                    fill('#acacac');
-                    rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 3) {
-                    fill('red');
-                    rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 4) {
-                    fill('black');
-                    rect(j * side, i * side, side, side);
-                } else if (matrix[i][j] == 5) {
-                    fill('white');
-                    rect(j * side, i * side, side, side);
-                }else if(matrix[i][j] == 6){
-                    fill('blue');
-                    rect(j * side, i * side, side, side);
-                }
+				if(weather == "summer"){
+					if (matrix[i][j] == 1) {
+				        fill("light green");
+				        rect(j * side, i * side, side, side);
+				    } else if (matrix[i][j] == 2) {
+				        fill("light yellow");
+				        rect(j * side, i * side, side, side);
+				    } else if (matrix[i][j] == 0) {
+				        fill('#acacac');
+				        rect(j * side, i * side, side, side);
+				    } else if (matrix[i][j] == 3) {
+				        fill('light red');
+				        rect(j * side, i * side, side, side);
+				    } else if (matrix[i][j] == 4) {
+				        fill('light black');
+				        rect(j * side, i * side, side, side);
+				    } else if (matrix[i][j] == 5) {
+				        fill('white');
+				        rect(j * side, i * side, side, side);
+				    }else if(matrix[i][j] == 6){
+				        fill('light blue');
+					    rect(j * side, i * side, side, side);
+					}
+				}
+				if(weather == "spring" || weather == "autumn"){
+					if (matrix[i][j] == 1) {
+					    fill("green");
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 2) {
+					    fill("yellow");
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 0) {
+					    fill('#acacac');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 3) {
+					    fill('red');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 4) {
+					    fill('black');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 5) {
+					    fill('white');
+					    rect(j * side, i * side, side, side);
+					}else if(matrix[i][j] == 6){
+					    fill('blue');
+					    rect(j * side, i * side, side, side);
+					}
+				}
+				if(weather == "winter"){
+					if (matrix[i][j] == 1) {
+					    fill("#1a6b15");
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 2) {
+					    fill("#d3d624");
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 0) {
+					    fill('#acacac');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 3) {
+					    fill('#a60d0d');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 4) {
+					    fill('#5c5858');
+					    rect(j * side, i * side, side, side);
+					} else if (matrix[i][j] == 5) {
+					    fill('#f0e8ce');
+					    rect(j * side, i * side, side, side);
+					}else if(matrix[i][j] == 6){
+					    fill('#0f1b73');
+					    rect(j * side, i * side, side, side);
+					}
+				}
             }
         }
     }
