@@ -16,7 +16,13 @@ function setup() {
     let reaperCountElement = document.getElementById('reaperCount');
     let creatorCountElement = document.getElementById('creatorCount');
     let hunterCountElement = document.getElementById('hunterCount');
-
+	let grassQuantityElement = document.getElementById('grassQuantity');
+	let grassEaterQuantityElement = document.getElementById('grassEaterQuantity');
+	let predatorQuantityElement = document.getElementById('predatorQuantity');
+	let reaperQuantityElement = document.getElementById('reaperQuantity');
+	let creatorQuantityElement = document.getElementById('creatorQuantity');
+	let hunterQuantityElement = document.getElementById('hunterQuantity');
+	let weatherNameElement = document.getElementById('weather');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 	
     socket.on("data", drawCreatures);
@@ -25,13 +31,19 @@ function setup() {
         //! after getting data pass it to matrix variable
 		matrix = data.matrix;
 		weather = data.weather;
-		console.log(weather);
         grassCountElement.innerText = data.grassCounter;
         grassEaterCountElement.innerText = data.grassEaterCounter;
         predatorCountElement.innerText = data.predatorCounter;
         reaperCountElement.innerText = data.reaperCounter;
         creatorCountElement.innerText = data.creatorCounter;
         hunterCountElement.innerText = data.hunterCounter;
+		grassQuantityElement.innerText = data.grassQuantity;
+		grassEaterQuantityElement.innerText = data.grassEaterQuantity;
+		predatorQuantityElement.innerText = data.predatorQuantity;
+		reaperQuantityElement.innerText = data.reaperQuantity;
+		creatorQuantityElement.innerText = data.creatorQuantity;
+		hunterQuantityElement.innerText = data.hunterQuantity;
+		weatherNameElement.innerText = data.weather;
         //! Every time it creates new Canvas woth new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side);
         //! clearing background by setting it to new grey color

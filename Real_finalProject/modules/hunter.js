@@ -36,7 +36,7 @@ module.exports = class Hunter extends LiveForm {
 			this.y = newCell[1];
 			matrix[newCell[1]][newCell[0]] = 6;
 		}
-		if(this.energy <= 0 || this.killedAnimals >= 40){
+		if(this.energy <= 0 || this.killedAnimals >= 25){
 			this.die();
 		}
 	}
